@@ -7,7 +7,7 @@ module.exports = {
       'error',
       {
         groups: [
-          ['^react', '^@?\\w'],
+          ['^react', '^native-base', '^@?\\w'],
 
           ['^@screens'],
           ['^@components'],
@@ -29,6 +29,7 @@ module.exports = {
         ]
       }
     ],
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
+    '@typescript-eslint/no-var-requires': 'off'
   }
 }
