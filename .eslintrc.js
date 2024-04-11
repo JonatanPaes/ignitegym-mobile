@@ -15,6 +15,7 @@ module.exports = {
           ['^@store'],
           ['^@storage'],
           ['^@routes'],
+          ['^@assets'],
           ['^@utils'],
 
           ['^\\.+'],
