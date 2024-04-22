@@ -8,6 +8,7 @@ import {
   Text,
   VStack
 } from 'native-base'
+import * as FileSystem from 'expo-file-system'
 import * as ImagePicker from 'expo-image-picker'
 
 import { Button } from '@components/Button'
@@ -39,6 +40,12 @@ export function Profile() {
       }
 
       if (photoSelected.assets[0].uri) {
+        const photoInfo = await FileSystem.getInfoAsync(
+          photoSelected.assets[0].uri
+        )
+
+        console.log('photoInfo', photoInfo)
+
         setUserPhoto(photoSelected.assets[0].uri)
       }
     } catch (error) {
