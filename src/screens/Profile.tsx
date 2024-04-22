@@ -8,6 +8,7 @@ import {
   Text,
   VStack
 } from 'native-base'
+import * as ImagePicker from 'expo-image-picker'
 
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
@@ -18,6 +19,10 @@ const PHOTO_SIZE = 33
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
+
+  async function handleUserPhotoSelect() {
+    await ImagePicker.launchCameraAsync()
+  }
 
   return (
     <VStack flex={1}>
@@ -41,7 +46,7 @@ export function Profile() {
             />
           )}
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleUserPhotoSelect}>
             <Text
               color="green.500"
               fontWeight="bold"
