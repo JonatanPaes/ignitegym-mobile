@@ -25,6 +25,7 @@ export function Profile() {
 
   async function handleUserPhotoSelect() {
     setPhotoIsLoading(true)
+
     try {
       const photoSelected = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
