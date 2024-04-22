@@ -21,12 +21,16 @@ export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
 
   async function handleUserPhotoSelect() {
-    await ImagePicker.launchCameraAsync({
+    const photoSelected = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
       aspect: [4, 4],
       allowsEditing: true
     })
+
+    if (photoSelected.canceled) {
+      return
+    }
   }
 
   return (
