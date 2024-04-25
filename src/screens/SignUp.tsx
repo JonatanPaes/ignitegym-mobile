@@ -9,7 +9,7 @@ import BackgroundImg from '@assets/background.png'
 import LogoSvg from '@assets/logo.svg'
 
 export function SignUp() {
-  const { control } = useForm()
+  const { control, handleSubmit } = useForm()
 
   const { goBack } = useNavigation()
 
@@ -17,7 +17,9 @@ export function SignUp() {
     goBack()
   }
 
-  function handleSignUp() {}
+  function handleSignUp(data: any) {
+    console.log('data', data)
+  }
 
   return (
     <ScrollView
@@ -89,11 +91,16 @@ export function SignUp() {
                 secureTextEntry
                 onChangeText={onChange}
                 value={value}
+                onSubmitEditing={handleSubmit(handleSignUp)}
+                returnKeyType="send"
               />
             )}
           />
 
-          <Button title="Criar e acessar" onPress={handleSignUp} />
+          <Button
+            title="Criar e acessar"
+            onPress={handleSubmit(handleSignUp)}
+          />
         </Center>
 
         <Button
