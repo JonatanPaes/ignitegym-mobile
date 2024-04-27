@@ -96,7 +96,6 @@ export function SignUp() {
               />
             )}
           />
-          <Text color="white">{errors.email?.message}</Text>
 
           <Controller
             control={control}

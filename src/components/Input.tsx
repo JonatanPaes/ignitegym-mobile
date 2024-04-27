@@ -17,6 +17,11 @@ export function Input({ errorMessage = null, isInvalid, ...rest }: InputProps) {
         color="white"
         fontFamily="body"
         placeholderTextColor="gray.300"
+        isInvalid={invalid}
+        _invalid={{
+          borderWidth: 1,
+          borderColor: 'red.500'
+        }}
         _focus={{
           bgColor: 'gray.700',
           borderWidth: 1,
