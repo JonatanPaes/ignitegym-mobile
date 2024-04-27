@@ -66,10 +66,14 @@ export function SignUp() {
               required: 'Informe o nome.'
             }}
             render={({ field: { onChange, value } }) => (
-              <Input placeholder="Nome" onChangeText={onChange} value={value} />
+              <Input
+                placeholder="Nome"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.email?.message}
+              />
             )}
           />
-          <Text color="white">{errors.name?.message}</Text>
 
           <Controller
             control={control}
@@ -88,6 +92,7 @@ export function SignUp() {
                 autoCapitalize="none"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.email?.message}
               />
             )}
           />
