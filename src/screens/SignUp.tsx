@@ -87,7 +87,7 @@ export function SignUp() {
                 placeholder="Nome"
                 onChangeText={onChange}
                 value={value}
-                errorMessage={errors.email?.message}
+                errorMessage={errors.name?.message}
               />
             )}
           />
@@ -145,7 +145,7 @@ export function SignUp() {
         <Button
           title="Voltar para o login"
           variant="outline"
-          mt={24}
+          mt={12}
           onPress={handleGoBack}
         />
       </VStack>
