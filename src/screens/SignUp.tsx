@@ -23,7 +23,11 @@ const signUpSchema = yup.object({
   password: yup
     .string()
     .required('informe a senha.')
-    .min(6, 'A senha deve ter pelo menos 6 dígitos.')
+    .min(6, 'A senha deve ter pelo menos 6 dígitos.'),
+  password_confirm: yup
+    .string()
+    .required('Confirme a senha.')
+    .oneOf([yup.ref('password')], 'A confirmação da senha não confere.')
 })
 
 type FormData = yup.InferType<typeof signUpSchema>
@@ -127,6 +131,7 @@ export function SignUp() {
                 value={value}
                 onSubmitEditing={handleSubmit(handleSignUp)}
                 returnKeyType="send"
+                errorMessage={errors.password_confirm?.message}
               />
             )}
           />
