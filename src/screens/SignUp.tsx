@@ -1,6 +1,8 @@
 import { Controller, useForm } from 'react-hook-form'
 import { Center, Heading, Image, ScrollView, Text, VStack } from 'native-base'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
+import * as yup from 'yup'
 
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
@@ -14,12 +16,22 @@ type FormDataProps = {
   password: string
   password_confirm: string
 }
+
+const signUpSchema = yup.object({
+  name: yup.string().required('Informe o nome.'),
+  email: yup.string().required('informe o e-mail').email('E-mail inválido')
+})
+
+type FormData = yup.InferType<typeof signUpSchema>
+
 export function SignUp() {
   const {
     control,
     handleSubmit,
     formState: { errors }
-  } = useForm<FormDataProps>()
+  } = useForm<FormData>({
+    resolver: yupResolver(signUpSchema)
+  })
 
   const { goBack } = useNavigation()
 
@@ -62,9 +74,6 @@ export function SignUp() {
           <Controller
             control={control}
             name="name"
-            rules={{
-              required: 'Informe o nome.'
-            }}
             render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="Nome"
@@ -78,13 +87,6 @@ export function SignUp() {
           <Controller
             control={control}
             name="email"
-            rules={{
-              required: 'Informe o email.',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'E-mail inválido'
-              }
-            }}
             render={({ field: { onChange, value } }) => (
               <Input
                 placeholder="E-mail"
