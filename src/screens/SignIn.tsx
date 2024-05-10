@@ -1,3 +1,4 @@
+import { Controller, useForm } from 'react-hook-form'
 import { Center, Heading, Image, ScrollView, Text, VStack } from 'native-base'
 import { useNavigation } from '@react-navigation/native'
 
@@ -9,11 +10,27 @@ import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 import BackgroundImg from '@assets/background.png'
 import LogoSvg from '@assets/logo.svg'
 
+type FormData = {
+  email: string
+  password: string
+}
+
 export function SignIn() {
   const { navigate } = useNavigation<AuthNavigatorRoutesProps>()
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>()
+
   function handleNewAccount() {
     navigate('signUp')
+  }
+
+  function handleSignIn(data: FormData) {
+    const { email, password } = data
+    console.log(email, password)
   }
 
   return (
@@ -43,15 +60,36 @@ export function SignIn() {
             Acesse sua conta
           </Heading>
 
-          <Input
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
+          <Controller
+            control={control}
+            name="email"
+            rules={{ required: 'Informe o e-mail' }}
+            render={({ field: { onChange } }) => (
+              <Input
+                placeholder="E-mail"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={onChange}
+                errorMessage={errors.email?.message}
+              />
+            )}
           />
 
-          <Input placeholder="Senha" secureTextEntry />
+          <Controller
+            control={control}
+            name="password"
+            rules={{ required: 'Informe a senha' }}
+            render={({ field: { onChange } }) => (
+              <Input
+                placeholder="Senha"
+                secureTextEntry
+                onChangeText={onChange}
+                errorMessage={errors.password?.message}
+              />
+            )}
+          />
 
-          <Button title="Acessar" />
+          <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
         </Center>
 
         <Center mt={24}>
