@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
 
+import { useAuth } from '@hooks/useAuth'
+
 import { AuthNavigatorRoutesProps } from '@routes/auth.routes'
 
 import BackgroundImg from '@assets/background.png'
@@ -16,6 +18,8 @@ type FormData = {
 }
 
 export function SignIn() {
+  const { signIn } = useAuth()
+
   const { navigate } = useNavigation<AuthNavigatorRoutesProps>()
 
   const {
@@ -30,7 +34,8 @@ export function SignIn() {
 
   function handleSignIn(data: FormData) {
     const { email, password } = data
-    console.log(email, password)
+
+    signIn(email, password)
   }
 
   return (
