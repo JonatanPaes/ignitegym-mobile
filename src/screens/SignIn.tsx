@@ -32,10 +32,10 @@ export function SignIn() {
     navigate('signUp')
   }
 
-  function handleSignIn(data: FormData) {
+  async function handleSignIn(data: FormData) {
     const { email, password } = data
 
-    signIn(email, password)
+    await signIn(email, password)
   }
 
   return (
