@@ -12,6 +12,7 @@ module.exports = {
           ['^@screens'],
           ['^@components'],
           ['^@hooks'],
+          ['^@contexts'],
           ['^@store'],
           ['^@storage'],
           ['^@routes'],
