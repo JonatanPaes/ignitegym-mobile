@@ -5,10 +5,11 @@ import {
   Roboto_700Bold,
   useFonts
 } from '@expo-google-fonts/roboto'
-import { AuthContextProvider } from 'src/context/AuthContext'
 import { THEME } from 'src/theme'
 
 import { Loading } from '@components/Loading'
+
+import { AuthContextProvider } from '@contexts/AuthContext'
 
 import { Routes } from '@routes/index'
 
