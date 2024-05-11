@@ -6,16 +6,21 @@ type ButtonProps = IButtonProps & {
 }
 
 export function Button({ title, variant = 'solid', ...rest }: ButtonProps) {
+  const backgroundColor = variant === 'outline' ? 'transparent' : 'green.700'
+
   return (
     <ButtonNativeBase
       w="full"
       h={14}
-      bg={variant === 'outline' ? 'transparent' : 'green.700'}
+      bg={backgroundColor}
       borderWidth={variant === 'outline' ? 1 : 0}
       borderColor="green.500"
       rounded="sm"
       _pressed={{
         bg: variant === 'outline' ? 'gray.500' : 'green.500'
+      }}
+      _loading={{
+        bg: backgroundColor + '80'
       }}
       {...rest}
     >
