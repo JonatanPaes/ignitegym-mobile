@@ -129,7 +129,7 @@ export function SignIn() {
           <Button
             title="Acessar"
             onPress={handleSubmit(handleSignIn)}
-            isLoading
+            isLoading={isLoading}
           />
         </Center>
 
