@@ -10,7 +10,7 @@ import {
   VStack
 } from 'native-base'
 import { Feather } from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { Button } from '@components/Button'
 
@@ -20,8 +20,16 @@ import BodySvg from '@assets/body.svg'
 import RepetitionsSvg from '@assets/repetitions.svg'
 import SeriesSvg from '@assets/series.svg'
 
+type RouteParamsProps = {
+  exerciseId: string
+}
+
 export function Exercise() {
   const { goBack } = useNavigation<AppNavigatorRoutesProps>()
+
+  const route = useRoute()
+
+  const { exerciseId } = route.params as RouteParamsProps
 
   function handleGoBack() {
     goBack()
