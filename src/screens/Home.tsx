@@ -13,7 +13,7 @@ import { AppNavigatorRoutesProps } from '@routes/app.routes'
 import { AppError } from '@utils/AppError'
 
 export function Home() {
-  const [groupSelected, setGroupSelected] = useState('Costas')
+  const [groupSelected, setGroupSelected] = useState('')
   const [groups, setGroups] = useState<string[]>([])
   const [exercises, setExercises] = useState<ExerciseDTO[]>([])
 
