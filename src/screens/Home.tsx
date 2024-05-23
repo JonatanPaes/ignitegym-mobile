@@ -1,15 +1,17 @@
 import { useCallback, useEffect, useState } from 'react'
 import { FlatList, Heading, HStack, Text, useToast, VStack } from 'native-base'
-import { ExerciseDTO } from '@dtos/ExerciseDTO'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
-import { api } from '@services/api'
 
 import { ExerciseCard } from '@components/ExerciseCard'
 import { Group } from '@components/Group'
 import { HomeHeader } from '@components/HomeHeader'
 import { Loading } from '@components/Loading'
 
+import { api } from '@services/api'
+
 import { AppNavigatorRoutesProps } from '@routes/app.routes'
+
+import { ExerciseDTO } from '@dtos/ExerciseDTO'
 
 import { AppError } from '@utils/AppError'
 

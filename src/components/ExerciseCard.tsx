@@ -1,8 +1,10 @@
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import { Heading, HStack, Icon, Image, Text, VStack } from 'native-base'
-import { ExerciseDTO } from '@dtos/ExerciseDTO'
 import { Entypo } from '@expo/vector-icons'
+
 import { api } from '@services/api'
+
+import { ExerciseDTO } from '@dtos/ExerciseDTO'
 
 type ExerciseCardProps = TouchableOpacityProps & {
   data: ExerciseDTO

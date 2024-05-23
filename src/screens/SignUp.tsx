@@ -11,11 +11,12 @@ import {
 } from 'native-base'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useNavigation } from '@react-navigation/native'
-import { api } from '@services/api'
 import * as yup from 'yup'
 
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
+
+import { api } from '@services/api'
 
 import { useAuth } from '@hooks/useAuth'
 

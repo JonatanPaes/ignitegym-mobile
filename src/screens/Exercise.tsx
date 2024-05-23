@@ -11,19 +11,21 @@ import {
   useToast,
   VStack
 } from 'native-base'
-import { ExerciseDTO } from '@dtos/ExerciseDTO'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { api } from '@services/api'
 
 import { Button } from '@components/Button'
 import { Loading } from '@components/Loading'
+
+import { api } from '@services/api'
 
 import { AppNavigatorRoutesProps } from '@routes/app.routes'
 
 import BodySvg from '@assets/body.svg'
 import RepetitionsSvg from '@assets/repetitions.svg'
 import SeriesSvg from '@assets/series.svg'
+
+import { ExerciseDTO } from '@dtos/ExerciseDTO'
 
 import { AppError } from '@utils/AppError'
 

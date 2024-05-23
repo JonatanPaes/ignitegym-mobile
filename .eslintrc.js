@@ -11,12 +11,14 @@ module.exports = {
 
           ['^@screens'],
           ['^@components'],
+          ['^@services'],
           ['^@hooks'],
           ['^@contexts'],
           ['^@store'],
           ['^@storage'],
           ['^@routes'],
           ['^@assets'],
+          ['^@dtos'],
           ['^@utils'],
 
           ['^\\.+'],
