@@ -23,17 +23,24 @@ import { UserPhoto } from '@components/UserPhoto'
 import { useAuth } from '@hooks/useAuth'
 const PHOTO_SIZE = 33
 
-type FormDataProps = {
-  name: string
-  email?: string
-  password?: string
-  old_password?: string
-  confirm_password?: string
-}
-
 const profileSchema = yup.object({
-  name: yup.string().required('Informe o nome')
+  name: yup.string().required('Informe o nome'),
+  email: yup.string(),
+  old_password: yup.string(),
+  password: yup
+    .string()
+    .min(6, 'A senha deve ter pelo menos 6 dígitos.')
+    .nullable()
+    .transform((value) => (!!value ? value : null)),
+
+  confirm_password: yup
+    .string()
+    .nullable()
+    .transform((value) => (!!value ? value : null))
+    .oneOf([yup.ref('password'), null], 'A confirmação de senha não confere.')
 })
+
+type FormDataProps = yup.InferType<typeof profileSchema>
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
@@ -43,6 +50,7 @@ export function Profile() {
 
   const toast = useToast()
   const { user } = useAuth()
+
   const {
     control,
     handleSubmit,
@@ -147,11 +155,11 @@ export function Profile() {
           <Controller
             control={control}
             name="email"
+            disabled
             render={({ field: { value, onChange } }) => (
               <Input
                 bg="gray.600"
                 placeholder="E-mail"
-                isDisabled
                 onChangeText={onChange}
                 value={value}
               />
@@ -193,7 +201,7 @@ export function Profile() {
                 placeholder="Nova senha"
                 secureTextEntry
                 onChangeText={onChange}
-                errorMessage={errors.name?.message}
+                errorMessage={errors.password?.message}
               />
             )}
           />
@@ -207,7 +215,7 @@ export function Profile() {
                 placeholder="Confirme a nova senha"
                 secureTextEntry
                 onChangeText={onChange}
-                errorMessage={errors.name?.message}
+                errorMessage={errors.confirm_password?.message}
               />
             )}
           />
