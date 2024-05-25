@@ -10,8 +10,10 @@ import {
   useToast,
   VStack
 } from 'native-base'
+import { yupResolver } from '@hookform/resolvers/yup'
 import * as FileSystem from 'expo-file-system'
 import * as ImagePicker from 'expo-image-picker'
+import * as yup from 'yup'
 
 import { Button } from '@components/Button'
 import { Input } from '@components/Input'
@@ -19,16 +21,19 @@ import { ScreenHeader } from '@components/ScreenHeader'
 import { UserPhoto } from '@components/UserPhoto'
 
 import { useAuth } from '@hooks/useAuth'
-
 const PHOTO_SIZE = 33
 
 type FormDataProps = {
   name: string
-  email: string
-  password: string
-  old_password: string
-  confirm_password: string
+  email?: string
+  password?: string
+  old_password?: string
+  confirm_password?: string
 }
+
+const profileSchema = yup.object({
+  name: yup.string().required('Informe o nome')
+})
 
 export function Profile() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false)
@@ -38,11 +43,16 @@ export function Profile() {
 
   const toast = useToast()
   const { user } = useAuth()
-  const { control, handleSubmit } = useForm<FormDataProps>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormDataProps>({
     defaultValues: {
       name: user.name,
       email: user.email
-    }
+    },
+    resolver: yupResolver(profileSchema)
   })
 
   async function handleUserPhotoSelect() {
@@ -129,6 +139,7 @@ export function Profile() {
                 placeholder="Nome"
                 onChangeText={onChange}
                 value={value}
+                errorMessage={errors.name?.message}
               />
             )}
           />
@@ -182,6 +193,7 @@ export function Profile() {
                 placeholder="Nova senha"
                 secureTextEntry
                 onChangeText={onChange}
+                errorMessage={errors.name?.message}
               />
             )}
           />
@@ -195,6 +207,7 @@ export function Profile() {
                 placeholder="Confirme a nova senha"
                 secureTextEntry
                 onChangeText={onChange}
+                errorMessage={errors.name?.message}
               />
             )}
           />
