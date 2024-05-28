@@ -32,12 +32,17 @@ const profileSchema = yup.object({
     .min(6, 'A senha deve ter pelo menos 6 dígitos.')
     .nullable()
     .transform((value) => (!!value ? value : null)),
-
   confirm_password: yup
     .string()
     .nullable()
     .transform((value) => (!!value ? value : null))
-    .oneOf([yup.ref('password'), null], 'A confirmação de senha não confere.')
+    .oneOf([yup.ref('password'), null], 'As senhas devem ser iguais.')
+    .when('password', {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      is: (Field: any) => Field,
+      then: (schema) =>
+        schema.nullable().required('Informe a confirmação da senha.')
+    })
 })
 
 type FormDataProps = yup.InferType<typeof profileSchema>
@@ -155,12 +160,12 @@ export function Profile() {
           <Controller
             control={control}
             name="email"
-            disabled
-            render={({ field: { value, onChange } }) => (
+            render={({ field: { value } }) => (
               <Input
                 bg="gray.600"
                 placeholder="E-mail"
-                onChangeText={onChange}
+                isDisabled
+                // onChangeText={onChange}
                 value={value}
               />
             )}

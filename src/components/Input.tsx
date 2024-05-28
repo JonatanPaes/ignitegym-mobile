@@ -28,6 +28,9 @@ export function Input({ errorMessage = null, isInvalid, ...rest }: InputProps) {
           borderWidth: 1,
           borderColor: 'green.500'
         }}
+        _disabled={{
+          bgColor: 'gray.600'
+        }}
         {...rest}
       />
 
