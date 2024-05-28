@@ -41,7 +41,10 @@ const profileSchema = yup.object({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       is: (Field: any) => Field,
       then: (schema) =>
-        schema.nullable().required('Informe a confirmação da senha.')
+        schema
+          .nullable()
+          .required('Informe a confirmação da senha.')
+          .transform((value) => (!!value ? value : null))
     })
 })
 
