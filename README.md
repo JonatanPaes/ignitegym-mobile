@@ -23,13 +23,13 @@ Node version 20.10.0
 Clone
 
 ```bash
-git clone
+git clone https://github.com/JonatanPaes/ignitegym-mobile.git
 ```
 
 Para executar o projeto
 
 ```bash
-cd
+cd ignitegym-mobile
 ```
 
 Instale as dependências do projeto
